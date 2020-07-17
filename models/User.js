@@ -9,25 +9,22 @@ const { Schema } = mongoose;
 const UserSchema = new Schema({
   name: {
     type: String,
+    minlength: 6,
     required: [true, "Please add a name"],
-  },
-  username: {
-    type: String,
-    unique: true,
-    required: [true, "Please add a username"],
   },
   email: {
     type: String,
-    required: [true, "Please add a name"],
+    required: [true, "Please add a email"],
+    unique: true,
     match: [
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-      "Please add a valid email",
+      "Please enter a valid email",
     ],
   },
   role: {
     type: String,
-    enum: ["user", "viewer"],
-    default: "user",
+    enum: ["admin", "user"],
+    default: "admin",
   },
   password: {
     type: String,
@@ -44,6 +41,11 @@ const UserSchema = new Schema({
   updatedAt: {
     type: Date,
     default: Date.now,
+  },
+  organization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Organization",
+    required: true,
   },
 });
 
