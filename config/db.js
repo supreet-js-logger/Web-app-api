@@ -8,6 +8,7 @@ const connectDB = async () => {
     useFindAndModify: true,
     useUnifiedTopology: true,
   });
+  // eslint-disable-next-line no-console
   console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold);
 };
 

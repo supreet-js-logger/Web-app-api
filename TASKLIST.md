@@ -1,0 +1,38 @@
+- [x] Setting up express app
+- [x] Setting up sub - domains
+- [x] Setting up Mongo db database
+- [x] Setting up migration framework for mongo db
+- [x] Setting up react app
+- [x] Setting up Unit test case framework node js
+- [x] Setting up unit test case react
+- [x] Preetfier and linting rules for node
+- [x] Preetfier and linting rules for react
+- [x] Health checkup for node app
+- [x] Node api doc generator
+- [ ] Create error documentation model that will be stored in db
+- [ ] Setting up Integration test case framework node js
+- [ ] Setting up redux store
+- [ ] Setting up integration test case react
+- [ ] Setting up documentation for react
+- [x] Setting up documentation for exposing api to thirdparty - api documentation (swagger-jsdoc)
+- [ ] Setting up documentation for internal api
+- [ ] Setting up a unique key for client to use application (paid)
+- [ ] Setting up a sandbox environment for testing (1 month free without key) ( free for paid user with key)
+- [ ] Setting up react app to use out internal application
+- [ ] Setting up a single line JS file usage which can directly be imported in any project to use our logger.
+- [x] Setting up app auth mechanism (JWT preferred)
+- [ ] If some major api breaks from front end there should be a logic to check health checkup of backend and give a application down page with retry option
+- [ ] application should have responsive design
+- [ ] offline first support (PWA recommended)
+- [ ] react documentation
+- [ ] usage documentation
+- [ ] user flow documentation with screenshots
+- [ ] creating a logger library for logging node js application
+- [ ] creating a logger library for react application
+- [ ] creating a cdn JS that can be used in any JAVASCRIPT application
+- [ ] figuring out a way to setup logger on local host
+- [ ] minify html in react app
+- [ ] minify js in react app
+- [ ] minify css in react app
+- [ ] check light house score and improve
+- [ ] continuous health checkup

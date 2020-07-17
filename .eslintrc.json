@@ -1,0 +1,56 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "jest": true
+    },
+    "extends": [
+        "airbnb-base",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2018
+    },
+    "ignorePatterns": ["migrations/*", "*.test.js"],
+
+    "rules": {
+        "semi": ["error", "always"], // always have a semi colon
+        "quotes": ["error", "double"], // use double quotes always
+        "complexity": ["error", 5], // max complexity of function should be 5
+        "max-statements": ["error", 10], // max sstatement per function should be 10
+        "max-statements-per-line": ["error", {
+            "max": 1 // max statement per line
+        }],
+        "max-nested-callbacks": ["error", 4], // max nested callbacks in a function
+        "max-depth": ["error", {
+            "max": 4 // max depth of a function
+        }],
+        "max-lines": ["error", {
+            "max": 90, // max 90 lines in a file
+            "skipComments": true,
+            "skipBlankLines": true
+        }],
+        "max-lines-per-function": ["error", {
+            "max": 20,
+            "skipBlankLines": true,
+            "skipComments": true
+        }],
+        "max-params": ["error", 4], // max params in a function
+        "eqeqeq": "error", // use of === instead of ==
+        "no-eval": "error", // not using eval func
+        "no-var": "error", // var should not be used
+        "prefer-const": "error", // if the variable is not assigned or reused it should be declared as const
+        "no-return-assign": "error", // there should not be any assignment in return function
+        "array-callback-return": "error", // Enforces return statements in callbacks of array's methods
+        "no-unused-expressions": ["error", {
+            "allowShortCircuit": true,
+            "allowTernary": true,
+            "allowTaggedTemplates": true
+        }],
+        "no-underscore-dangle": "off",
+        "prettier/prettier": "error" // preetier realted errors
+    }
+}

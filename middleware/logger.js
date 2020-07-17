@@ -1,7 +1,8 @@
-//@desc     Log reuest to console
+// @desc     Log reuest to console
 const logger = (req, res, next) => {
+  // eslint-disable-next-line no-console
   console.log(
-    `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`
+    `${req.method} ${req.protocol}://${req.get("host")}${req.originalUrl}`,
   );
   next();
 };
