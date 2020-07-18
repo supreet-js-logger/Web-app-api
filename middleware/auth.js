@@ -31,10 +31,14 @@ exports.protect = asyncHandler(async (req, res, next) => {
   if (!token) {
     next(new ErrorResponse("Not authorized to access this route", 401));
   }
-  // verify token
-  const decoded = jwt.verify(token, process.env.JWT_SECRET);
-  req.user = await User.findById(decoded.id);
-  return next();
+  try {
+    // verify token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = await User.findById(decoded.id);
+    return next();
+  } catch (error) {
+    next(new ErrorResponse("Not authorized to access this route", 401));
+  }
 });
 
 // Grant access to specific roles

@@ -9,7 +9,9 @@ const sendTokenResponse = (user, statusCode, res) => {
   const token = user.getSignedJWTToken();
 
   const options = {
-    expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    expires: new Date(
+      Date.now() + process.env.JWT_SECRET * 24 * 60 * 60 * 1000,
+    ),
     httpOnly: true,
   };
   if (process.env.NODE_ENV === "production") {
@@ -81,4 +83,17 @@ exports.getMe = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json({ success: true, data: user });
+});
+
+// @desc Get login user
+// @route GET /auth/logout
+// @access Private
+exports.logout = asyncHandler(async (req, res) => {
+  // check for user
+  res.cookie("token", "none", {
+    expires: new Date(Date.now()),
+    httpOnly: true,
+  });
+
+  res.status(200).json({});
 });
