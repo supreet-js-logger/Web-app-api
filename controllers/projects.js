@@ -10,7 +10,7 @@ exports.getAllProjects = asycnHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
   const organization = user.organization;
   let projects = await Project.find({ organization, isActive: true });
-  res.status(200).json({ success: true, msg: projects });
+  res.status(200).json({ success: true, data: projects });
 });
 
 // @desc    get single project
@@ -24,11 +24,11 @@ exports.getProject = (req, res) => {
 // @route   POST /api/v1/projects/
 // @access  Private
 exports.createProject = asycnHandler(async (req, res) => {
-  const { name, tpye } = req.body;
+  const { name, type } = req.body;
   const apiKey = uuidv4();
   const user = await User.findById(req.user.id);
   const organization = user.organization;
-  let project = await Project.create({ name, tpye, apiKey, organization });
+  let project = await Project.create({ name, type, apiKey, organization });
   project.apiKey = apiKey;
   res.status(200).json({ success: true, data: project });
 });

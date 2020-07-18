@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -24,9 +25,28 @@ const app = express();
 // Dev logging middleware
 process.env.NODE_ENV === "development" && app.use(morgan("dev"));
 
+const allowedOrigins = ["http://localhost:8080"];
+app.use(
+  cors({
+    credentials: true,
+    origin: function (origin, callback) {
+      // allow requests with no origin
+      // (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        var msg =
+          "The CORS policy for this site does not " +
+          "allow access from the specified Origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+  }),
+);
 // Returns middleware that parses json
+app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(cors());
+
 // mount routes
 app.use("/api/v1/logs", logs);
 app.use("/api/v1/auth", auth);
