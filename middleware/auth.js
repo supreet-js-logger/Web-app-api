@@ -3,8 +3,19 @@ const asyncHandler = require("./async");
 const ErrorResponse = require("../utils/errorResponse");
 
 const User = require("../models/User");
+function parseCookies(rc) {
+  let list = {};
+  rc &&
+    rc.split(";").forEach(function (cookie) {
+      var parts = cookie.split("=");
+      list[parts.shift().trim()] = decodeURI(parts.join("="));
+    });
 
-const getReqToken = ({ authorization, cookies }) => {
+  return list;
+}
+
+const getReqToken = ({ authorization, cookie }) => {
+  const cookies = parseCookies(cookie);
   let token;
   if (authorization && authorization.startsWith("Bearer")) {
     [, token] = authorization.split(" ");
