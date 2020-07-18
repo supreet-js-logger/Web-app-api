@@ -80,5 +80,5 @@ exports.getMe = asyncHandler(async (req, res) => {
     select: "name slug",
   });
 
-  res.status(200).json({ success: false, data: user });
+  res.status(200).json({ success: true, data: user });
 });

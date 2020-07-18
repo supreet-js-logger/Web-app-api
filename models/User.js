@@ -57,8 +57,8 @@ UserSchema.pre("save", async function hashPassword() {
 
 // Sign JWT and return
 UserSchema.methods.getSignedJWTToken = function getSignedJWTToken() {
-  return jwt.sign({ id: this._id }, "hasfnasdjfgkjhyn4567jkfg6546nk57u8", {
-    expiresIn: "30d",
+  return jwt.sign({ id: this._id }, process.env.JWT_TOKEN, {
+    expiresIn: "30m",
   });
 };
 

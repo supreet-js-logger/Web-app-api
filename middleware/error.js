@@ -50,7 +50,7 @@ const handleSpecificError = (err) => {
 const errorHandler = (err, req, res, next) => {
   // Log to console for developer
   // eslint-disable-next-line no-console
-  console.log(err.stack.red);
+  // console.log(err.stack.red);
   const { error, data } = handleSpecificError(err);
 
   res.status(error.statusCode || 500).json({

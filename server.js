@@ -16,6 +16,7 @@ connectDB();
 // Route files
 const logs = require("./routes/logs");
 const auth = require("./routes/auth");
+const projects = require("./routes/projects");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 // mount routes
 app.use("/api/v1/logs", logs);
 app.use("/api/v1/auth", auth);
+app.use("/api/v1/projects", projects);
 
 // setting up custom error handler
 app.use(errorHandler);
