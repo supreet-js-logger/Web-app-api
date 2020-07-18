@@ -6,6 +6,7 @@ const colors = require("colors");
 const bodyParser = require("body-parser");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
+const cors = require("cors");
 
 // Load env vars
 dotenv.config({ path: "./config/config.env" });
@@ -25,7 +26,7 @@ process.env.NODE_ENV === "development" && app.use(morgan("dev"));
 
 // Returns middleware that parses json
 app.use(bodyParser.json());
-
+app.use(cors());
 // mount routes
 app.use("/api/v1/logs", logs);
 app.use("/api/v1/auth", auth);
