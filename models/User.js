@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const { Schema } = mongoose;
-// const { JWT_SECRET, JWT_EXPIRE } = server.get("config");
 
 // create schema for log
 const UserSchema = new Schema({
@@ -57,8 +56,8 @@ UserSchema.pre("save", async function hashPassword() {
 
 // Sign JWT and return
 UserSchema.methods.getSignedJWTToken = function getSignedJWTToken() {
-  return jwt.sign({ id: this._id }, process.env.JWT_TOKEN, {
-    expiresIn: "30m",
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE,
   });
 };
 

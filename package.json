@@ -41,7 +41,8 @@
     "morgan": "^1.10.0",
     "reqest": "0.0.1-security",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "uuid": "^8.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

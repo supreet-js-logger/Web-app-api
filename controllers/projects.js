@@ -1,9 +1,17 @@
+const Project = require("../models/Project");
+const User = require("../models/User");
+const { v4: uuidv4 } = require("uuid");
+const asycnHandler = require("../middleware/async");
+
 // @desc    get all projects
 // @route   GET /api/v1/projects
 // @access  Private
-exports.getAllProjects = (req, res) => {
-  res.status(200).json({ success: true, msg: "list of all projects" });
-};
+exports.getAllProjects = asycnHandler(async (req, res) => {
+  const user = await User.findById(req.user.id);
+  const organization = user.organization;
+  let projects = await Project.find({ organization, isActive: true });
+  res.status(200).json({ success: true, msg: projects });
+});
 
 // @desc    get single project
 // @route   GET /api/v1/project/:id
@@ -15,9 +23,15 @@ exports.getProject = (req, res) => {
 // @desc    create new project
 // @route   POST /api/v1/projects/
 // @access  Private
-exports.createProject = (req, res) => {
-  res.status(200).json({ success: true, msg: "create a new project" });
-};
+exports.createProject = asycnHandler(async (req, res) => {
+  const { name, tpye } = req.body;
+  const apiKey = uuidv4();
+  const user = await User.findById(req.user.id);
+  const organization = user.organization;
+  let project = await Project.create({ name, tpye, apiKey, organization });
+  project.apiKey = apiKey;
+  res.status(200).json({ success: true, data: project });
+});
 
 // @desc    update project
 // @route   PUT /api/v1/projects/:id
